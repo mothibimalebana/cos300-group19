@@ -6,7 +6,7 @@ form {
     height: 100vh;
     font-family: 'Instrument Sans';
     margin: 0;
-    background-image: url('https://ui167uk0dv.ufs.sh/f/cPmxYSKavd0t7wGWeG9YzAeR3Ku0fwNZI2kPtdSq8DGsFMh1');
+    background: url('https://ui167uk0dv.ufs.sh/f/cPmxYSKavd0t7wGWeG9YzAeR3Ku0fwNZI2kPtdSq8DGsFMh1') lightgray 50% / cover no-repeat;
     background-size: cover;
     background-position: center bottom;
     color: #FFF;
@@ -29,6 +29,14 @@ form {
     border-radius: 74.812px;
     background: rgba(255, 255, 255, 0.10);
     padding: 1rem 7rem;
+}
+.shade{
+    border-radius: 4.156px;
+    background: rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+}
+a {
+    padding: 1rem 2rem;
 }
 p{
  font-family: 'Inter';  

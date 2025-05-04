@@ -1,5 +1,56 @@
+import { Link, useLocation } from 'react-router-dom';
 import '../src/css/Login.css'
+import { useRef, useState } from 'react';
+import { supabase } from './supabase/Client';
+
+
+
 function Register() {
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+    const confirmPasswordRef = useRef(null);
+    const [errorMsg, setErrorMsg] = useState("");
+    const [msg, setMsg] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const register = (email, password) => supabase.auth.signUp({email, password});
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (
+          !passwordRef.current?.value ||
+          !emailRef.current?.value ||
+          !confirmPasswordRef.current?.value
+        ) {
+          setErrorMsg("Please fill all the fields");
+          return;
+        }
+        if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+          setErrorMsg("Passwords doesn't match");
+          return;
+        }
+        try {
+          setErrorMsg("");
+          setLoading(true);
+          const { data, error } = await register(
+            emailRef.current.value,
+            passwordRef.current.value
+          );
+          if (!error && data) {
+            setMsg(
+              "Registration Successful. Check your email to confirm your account"
+            );
+          }
+        } catch (error) {
+          setErrorMsg("Error in Creating Account");
+        }
+        setLoading(false);
+      };
+
+    const location = useLocation();
+    let pathname = location.pathname;
+
+    const currentPath = pathname.split('/')[1];
     return(
         <div className="hidden md:flex flex-col container justify-between">
             {/*Desktop*/}
@@ -12,11 +63,11 @@ function Register() {
                     <h2>Group 19</h2>
                 </div>
                 <div className="left flex gap-5">
-                    <button className="login"><p>Login</p></button>
-                    <button className="register"><p>Register</p></button>
+                    <Link to="/login" className="login" replace><p>Login</p></Link>
+                    <Link to="/register" className={`register ${currentPath ? 'shade' : 'none'}`} replace><p>Register</p></Link>
                 </div>
             </div>
-            <form action="#" className='flex flex-col gap-5'>
+            <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
                 <div className="username flex gap-5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 22 26" fill="none">
                     <g clip-path="url(#clip0_4614_599)">
@@ -28,17 +79,34 @@ function Register() {
                         </clipPath>
                     </defs>
                     </svg>
-                    <input type="text" name='username' placeholder='Username'/>
+                    <input type="text" name='email' placeholder='Username'/>
                 </div>
                 <div className="password flex gap-5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" viewBox="0 0 25 30" fill="none">
                         <path d="M17.5559 10.2849V9.07267C17.5559 5.73053 15.2542 3.01147 12.4251 3.01147C9.59598 3.01147 7.2943 5.73053 7.2943 9.07267V12.7094H6.26814C5.13629 12.7094 4.21582 13.7968 4.21582 15.1339V24.8318C4.21582 26.1689 5.13629 27.2562 6.26814 27.2562H18.5821C19.7139 27.2562 20.6344 26.1689 20.6344 24.8318V15.1339C20.6344 13.7968 19.7139 12.7094 18.5821 12.7094H9.34663V9.07267C9.34663 7.06762 10.7278 5.43595 12.4251 5.43595C14.1224 5.43595 15.5036 7.06762 15.5036 9.07267V10.2849H17.5559Z" fill="white"/>
                     </svg>
-                    <input type="text" name='password' placeholder='Password'/>
+                    <input type="password" name='password' placeholder='Password'/>
                 </div>
-                <button>Get started</button>
+                <div className="password flex gap-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" viewBox="0 0 25 30" fill="none">
+                        <path d="M17.5559 10.2849V9.07267C17.5559 5.73053 15.2542 3.01147 12.4251 3.01147C9.59598 3.01147 7.2943 5.73053 7.2943 9.07267V12.7094H6.26814C5.13629 12.7094 4.21582 13.7968 4.21582 15.1339V24.8318C4.21582 26.1689 5.13629 27.2562 6.26814 27.2562H18.5821C19.7139 27.2562 20.6344 26.1689 20.6344 24.8318V15.1339C20.6344 13.7968 19.7139 12.7094 18.5821 12.7094H9.34663V9.07267C9.34663 7.06762 10.7278 5.43595 12.4251 5.43595C14.1224 5.43595 15.5036 7.06762 15.5036 9.07267V10.2849H17.5559Z" fill="white"/>
+                    </svg>
+                    <input type="password" name='confirmPassword' placeholder='Confirm Password'/>
+                </div>
+                {errorMsg && (
+                    <alert className="danger"
+                        onClose={() => setErrorMsg("")}
+                        dismissible>
+                        {errorMsg}
+                    </alert>
+                    )}
+                    {msg && (
+                    <alert className="success" onClose={() => setMsg("")} dismissible>
+                        {msg}
+                </alert>
+                )}
+                <button disabled={loading}className='submit'>Get started</button>
             </form>
-            <div className="button"></div>
             <div className="footer flex justify-between">
                 <div className="left flex gap-10">
                     <p>About Us</p>

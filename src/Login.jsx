@@ -1,5 +1,11 @@
+import { Link, useLocation } from 'react-router-dom';
 import '../src/css/Login.css'
+
 function Login() {
+    const location = useLocation();
+    let pathname = location.pathname;
+
+    const currentPath = pathname.split('/')[1];
     return(
         <div className="hidden md:flex flex-col container justify-between">
             {/*Desktop*/}
@@ -12,8 +18,8 @@ function Login() {
                     <h2>Group 19</h2>
                 </div>
                 <div className="left flex gap-5">
-                    <button className="login"><p>Login</p></button>
-                    <button className="register"><p>Register</p></button>
+                    <Link to="/login" className={`login ${currentPath ? 'shade' : 'none'}`}><p>Login</p></Link>
+                    <Link to="/register"><p>Register</p></Link>
                 </div>
             </div>
             <form action="#" className='flex flex-col gap-10'>

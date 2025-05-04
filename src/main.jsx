@@ -6,6 +6,8 @@ import Login from "./Login.jsx"
 import MfaVerification from "./MfaVerification.jsx"
 import Dashboard from "./Dashboard.jsx"
 import "./index.css"
+import Register from "./Register.jsx"
+import AuthProvider from "./context/AuthProvider.jsx"
 
 // Define all routes for the application
 const router = createBrowserRouter([
@@ -15,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <App />,
+    element: <Register/>,
   },
   {
     path: "/login",
@@ -37,6 +39,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )
