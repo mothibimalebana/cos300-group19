@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "./context/AuthProvider";
-
+import '../src/css/LandingPage'
 
 const LandingPage = () => {
   const { user } = useAuth();
@@ -8,7 +8,7 @@ const LandingPage = () => {
   return(
     <>
       <div className="container">
-        
+
       </div>
     </>
   )
