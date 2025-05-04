@@ -1,5 +1,5 @@
 import '../src/css/Login.css'
-function Login() {
+function Register() {
     return(
         <div className="hidden md:flex flex-col container justify-between">
             {/*Desktop*/}
@@ -16,7 +16,7 @@ function Login() {
                     <button className="register"><p>Register</p></button>
                 </div>
             </div>
-            <form action="#" className='flex flex-col gap-10'>
+            <form action="#" className='flex flex-col gap-5'>
                 <div className="username flex gap-5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 22 26" fill="none">
                     <g clip-path="url(#clip0_4614_599)">
@@ -36,8 +36,9 @@ function Login() {
                     </svg>
                     <input type="text" name='password' placeholder='Password'/>
                 </div>
-                <button className='submit'>Get started</button>
+                <button>Get started</button>
             </form>
+            <div className="button"></div>
             <div className="footer flex justify-between">
                 <div className="left flex gap-10">
                     <p>About Us</p>
@@ -56,4 +57,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Register

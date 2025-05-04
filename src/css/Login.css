@@ -1,4 +1,7 @@
-
+form {
+    width: fit-content;
+    align-self: center;
+}
 .container{
     height: 100vh;
     font-family: 'Instrument Sans';
@@ -7,7 +10,7 @@
     background-size: cover;
     background-position: center bottom;
     color: #FFF;
-    padding: 3rem 2rem;
+    padding: 2rem 1rem;
 }
 .brand > h2 {
     font-family: 'Instrument Sans Bold';
@@ -25,7 +28,7 @@
 .username, .password {
     border-radius: 74.812px;
     background: rgba(255, 255, 255, 0.10);
-    padding: 2rem 10rem;
+    padding: 1rem 7rem;
 }
 p{
  font-family: 'Inter';  
@@ -34,4 +37,9 @@ p{
  font-style: normal;
  font-weight: 500;
  line-height: normal; 
+}
+.submit{
+    padding: 1rem 5rem;
+    border-radius: 74.812px;
+    background: rgba(235, 223, 215, 0.75);
 }
