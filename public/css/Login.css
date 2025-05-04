@@ -1,7 +1,17 @@
+
 .container{
     height: 100vh;
     margin: 0;
     background-image: url('public/img/background.png');
     background-size: cover;
     background-position: center bottom;
+    color: #FFF;
+}
+.brand > h2 {
+    color: #FFF;
+    font-family: "Instrument Sans";
+    font-size: 26.434px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
