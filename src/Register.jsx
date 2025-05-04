@@ -52,7 +52,7 @@ function Register() {
 
     const currentPath = pathname.split('/')[1];
     return(
-        <div className="hidden md:flex flex-col container justify-between">
+        <div className="hidden md:flex flex-col containerL justify-between">
             {/*Desktop*/}
             <div className="header flex justify-between">
                 <div className="brand flex gap-3 items-center">
