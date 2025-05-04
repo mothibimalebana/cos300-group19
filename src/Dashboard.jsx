@@ -1,11 +1,15 @@
 import React from "react";
 import { useAuth } from "./context/AuthProvider";
+import '../src/css/Dashboard.css'
 
 
 const Dashboard = () => {
   const { user } = useAuth();
 
-  return <div>You are logged in and your email address is {user.email}</div>;
+  return(
+    <>
+    </>
+  )
 };
 
 export default Dashboard;

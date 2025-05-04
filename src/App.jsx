@@ -4,6 +4,7 @@ import Login from "./Login";
 import AuthRoute from "./components/AuthRoute";
 import Dashboard from "./Dashboard";
 import PasswordReset from "./PasswordReset";
+import LandingPage from "./LandingPage";
 
 const App = () =>{
   return(
@@ -15,7 +16,9 @@ const App = () =>{
             </Route>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/landing-page" element={<LandingPage />} />
             <Route path="/passwordreset" element={<PasswordReset />} />
+
       </Routes>
     </>
   )

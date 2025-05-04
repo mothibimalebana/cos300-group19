@@ -29,7 +29,7 @@ const AuthProvider = ({children}) => {
           setLoading(false);
         };
         getUser();
-        
+                
         const { data } = supabase.auth.onAuthStateChange((event, session) =>{
             if(event === "SIGNED_IN"){
                 setUser(session.user);
@@ -48,7 +48,7 @@ const AuthProvider = ({children}) => {
     }, [])
 
     return(
-        <AuthContext.Provider value={{user, login, signOut, passwordReset, updatePassword}}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{user, login, signOut, passwordReset, updatePassword}}>{!loading && children}</AuthContext.Provider>
     )
 }
 
