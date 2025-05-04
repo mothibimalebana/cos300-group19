@@ -1,6 +1,8 @@
 
 .container{
+
     height: 100vh;
+    font-family: 'Instrument Sans';
     margin: 0;
     background-image: url('https://ui167uk0dv.ufs.sh/f/cPmxYSKavd0t7wGWeG9YzAeR3Ku0fwNZI2kPtdSq8DGsFMh1');
     background-size: cover;
@@ -8,10 +10,20 @@
     color: #FFF;
 }
 .brand > h2 {
+    font-family: 'Instrument Sans Bold';
     color: #FFF;
     font-family: "Instrument Sans";
     font-size: 26.434px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+.content{
+    width: fit-content;
+    align-self: center;
+}
+.username, .password {
+    border-radius: 74.812px;
+    background: rgba(255, 255, 255, 0.10);
+    padding: 2rem 10rem;
 }
