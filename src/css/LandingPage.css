@@ -1,3 +1,10 @@
 .container{
+    height: 100vh;
+    font-family: 'Instrument Sans';
+    margin: 0;
     background-image: url('https://ui167uk0dv.ufs.sh/f/cPmxYSKavd0t1XnX7KCQWJpNr9EzXtKSIoV7vRFCqsmhk58i');
+    background-size: cover;
+    background-position: center bottom;
+    color: #FFF;
+    padding: 2rem 1rem;
 }

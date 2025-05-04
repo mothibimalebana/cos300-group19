@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "./context/AuthProvider";
-import '../src/css/LandingPage'
+import '../src/css/LandingPage.css'
 
 const LandingPage = () => {
   const { user } = useAuth();
