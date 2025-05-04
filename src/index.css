@@ -88,6 +88,9 @@
   font-display: swap;
 }
 
+input:-internal-autofill-selected{
+  background: rgba(255, 255, 255, 0.10);
+}
 
 #root{
   height: 100vh;

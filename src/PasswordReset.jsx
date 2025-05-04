@@ -48,7 +48,7 @@ const PasswordReset = () => {
                         </clipPath>
                     </defs>
                     </svg>
-                    <input type="text" name='email' ref={emailRef} placeholder='Email'/>
+                    <input type="text" name='email' ref={emailRef} placeholder='Email' required/>
                 </div>
                 {msg && (
                 <alert onClose={() => setMsg("")} dismissible>
