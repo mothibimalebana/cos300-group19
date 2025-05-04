@@ -1,7 +1,7 @@
 import '../src/css/Login.css'
 function Login() {
     return(
-        <div className="hidden md:flex flex-col container">
+        <div className="hidden md:flex flex-col container justify-between">
             {/*Desktop*/}
             <div className="header flex justify-between">
                 <div className="brand flex gap-3 items-center">
@@ -12,11 +12,11 @@ function Login() {
                     <h2>Group 19</h2>
                 </div>
                 <div className="left flex gap-5">
-                    <button className="login">login</button>
-                    <button className="register">register</button>
+                    <button className="login"><p>Login</p></button>
+                    <button className="register"><p>Register</p></button>
                 </div>
             </div>
-            <div className="content flex flex-col item-center">
+            <div className="content flex flex-col item-center gap-10">
                 <div className="username flex gap-5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 22 26" fill="none">
                     <g clip-path="url(#clip0_4614_599)">
@@ -38,13 +38,19 @@ function Login() {
                 </div>
                 <div className="button"></div>
             </div>
-            <div className="footer">
-                <div className="left">
+            <div className="footer flex justify-between">
+                <div className="left flex gap-10">
                     <p>About Us</p>
                     <p>Privacy Policy</p>
                     <p>Terms of Use</p>
                 </div>
-                <div className="right"></div>
+                <div className="right flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="25" viewBox="0 0 26 25" fill="none">
+                        <path d="M12.6734 22.9208C18.412 22.9208 23.064 18.2687 23.064 12.5301C23.064 6.79156 18.412 2.13953 12.6734 2.13953C6.93481 2.13953 2.28278 6.79156 2.28278 12.5301C2.28278 18.2687 6.93481 22.9208 12.6734 22.9208Z" stroke="white" stroke-width="1.6625" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.8296 9.21445C16.3631 8.26371 14.963 6.60069 12.1627 6.83811C9.36241 7.07606 7.26195 9.69034 7.49574 13.0169C7.72953 16.344 10.296 18.2449 12.6292 18.2449C15.4295 18.2449 16.8296 15.9637 16.8296 15.9637" stroke="white" stroke-width="1.6625" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>2025 All Rights Reserved | Design By  Group 19</p>
+                </div>
             </div>
         </div>
     )

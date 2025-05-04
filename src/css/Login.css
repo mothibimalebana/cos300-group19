@@ -1,6 +1,5 @@
 
 .container{
-
     height: 100vh;
     font-family: 'Instrument Sans';
     margin: 0;
@@ -8,6 +7,7 @@
     background-size: cover;
     background-position: center bottom;
     color: #FFF;
+    padding: 3rem 2rem;
 }
 .brand > h2 {
     font-family: 'Instrument Sans Bold';
@@ -26,4 +26,12 @@
     border-radius: 74.812px;
     background: rgba(255, 255, 255, 0.10);
     padding: 2rem 10rem;
+}
+p{
+ font-family: 'Inter';  
+ color: #FFF;
+ font-size: 19.95px;
+ font-style: normal;
+ font-weight: 500;
+ line-height: normal; 
 }
