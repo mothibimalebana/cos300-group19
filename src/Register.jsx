@@ -79,19 +79,19 @@ function Register() {
                         </clipPath>
                     </defs>
                     </svg>
-                    <input type="text" name='email' placeholder='Username'/>
+                    <input type="text" name='email' ref={emailRef} placeholder='Email'/>
                 </div>
                 <div className="password flex gap-5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" viewBox="0 0 25 30" fill="none">
                         <path d="M17.5559 10.2849V9.07267C17.5559 5.73053 15.2542 3.01147 12.4251 3.01147C9.59598 3.01147 7.2943 5.73053 7.2943 9.07267V12.7094H6.26814C5.13629 12.7094 4.21582 13.7968 4.21582 15.1339V24.8318C4.21582 26.1689 5.13629 27.2562 6.26814 27.2562H18.5821C19.7139 27.2562 20.6344 26.1689 20.6344 24.8318V15.1339C20.6344 13.7968 19.7139 12.7094 18.5821 12.7094H9.34663V9.07267C9.34663 7.06762 10.7278 5.43595 12.4251 5.43595C14.1224 5.43595 15.5036 7.06762 15.5036 9.07267V10.2849H17.5559Z" fill="white"/>
                     </svg>
-                    <input type="password" name='password' placeholder='Password'/>
+                    <input type="password" name='password' ref={passwordRef} placeholder='Password'/>
                 </div>
                 <div className="password flex gap-5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" viewBox="0 0 25 30" fill="none">
                         <path d="M17.5559 10.2849V9.07267C17.5559 5.73053 15.2542 3.01147 12.4251 3.01147C9.59598 3.01147 7.2943 5.73053 7.2943 9.07267V12.7094H6.26814C5.13629 12.7094 4.21582 13.7968 4.21582 15.1339V24.8318C4.21582 26.1689 5.13629 27.2562 6.26814 27.2562H18.5821C19.7139 27.2562 20.6344 26.1689 20.6344 24.8318V15.1339C20.6344 13.7968 19.7139 12.7094 18.5821 12.7094H9.34663V9.07267C9.34663 7.06762 10.7278 5.43595 12.4251 5.43595C14.1224 5.43595 15.5036 7.06762 15.5036 9.07267V10.2849H17.5559Z" fill="white"/>
                     </svg>
-                    <input type="password" name='confirmPassword' placeholder='Confirm Password'/>
+                    <input type="password" name='confirmPassword' ref={confirmPasswordRef} placeholder='Confirm Password'/>
                 </div>
                 {errorMsg && (
                     <alert className="danger"
@@ -99,11 +99,11 @@ function Register() {
                         dismissible>
                         {errorMsg}
                     </alert>
-                    )}
-                    {msg && (
+                )}
+                {msg && (
                     <alert className="success" onClose={() => setMsg("")} dismissible>
                         {msg}
-                </alert>
+                    </alert>
                 )}
                 <button disabled={loading}className='submit'>Get started</button>
             </form>

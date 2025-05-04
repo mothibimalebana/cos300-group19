@@ -1,9 +1,40 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../src/css/Login.css'
+import { useRef, useState } from 'react';
+import { useAuth } from './context/AuthProvider';
+
 
 function Login() {
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+    const [errorMsg, setErrorMsg] = useState("");
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const { login } = useAuth();
     const location = useLocation();
+
     let pathname = location.pathname;
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          setErrorMsg("");
+          setLoading(true);
+          if (!passwordRef.current?.value || !emailRef.current?.value) {
+            setErrorMsg("Please fill in the fields");
+            return;
+          }
+          const {
+            data: { user, session },
+            error
+          } = await login(emailRef.current.value, passwordRef.current.value);
+          if (error) setErrorMsg(error.message);
+          if (user && session) navigate("/");
+        } catch (error) {
+          setErrorMsg("Email or Password Incorrect");
+        }
+        setLoading(false);
+      };
 
     const currentPath = pathname.split('/')[1];
     return(
@@ -22,7 +53,7 @@ function Login() {
                     <Link to="/register"><p>Register</p></Link>
                 </div>
             </div>
-            <form action="#" className='flex flex-col gap-10'>
+            <form onSubmit={handleSubmit} className='flex flex-col gap-10'>
                 <div className="username flex gap-5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 22 26" fill="none">
                     <g clip-path="url(#clip0_4614_599)">
@@ -34,15 +65,22 @@ function Login() {
                         </clipPath>
                     </defs>
                     </svg>
-                    <input type="text" name='username' placeholder='Username'/>
+                    <input type="text" placeholder='Email' ref={emailRef} required/>
                 </div>
                 <div className="password flex gap-5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" viewBox="0 0 25 30" fill="none">
                         <path d="M17.5559 10.2849V9.07267C17.5559 5.73053 15.2542 3.01147 12.4251 3.01147C9.59598 3.01147 7.2943 5.73053 7.2943 9.07267V12.7094H6.26814C5.13629 12.7094 4.21582 13.7968 4.21582 15.1339V24.8318C4.21582 26.1689 5.13629 27.2562 6.26814 27.2562H18.5821C19.7139 27.2562 20.6344 26.1689 20.6344 24.8318V15.1339C20.6344 13.7968 19.7139 12.7094 18.5821 12.7094H9.34663V9.07267C9.34663 7.06762 10.7278 5.43595 12.4251 5.43595C14.1224 5.43595 15.5036 7.06762 15.5036 9.07267V10.2849H17.5559Z" fill="white"/>
                     </svg>
-                    <input type="text" name='password' placeholder='Password'/>
+                    <input type="password" placeholder='Password' ref={passwordRef} required/>
                 </div>
-                <button className='submit'>Get started</button>
+                {errorMsg && (
+              <alert
+                onClose={() => setErrorMsg("")}
+                dismissible>
+                {errorMsg}
+              </alert>
+            )}
+                <button disabled={loading} className='submit'>Get started</button>
             </form>
             <div className="footer flex justify-between">
                 <div className="left flex gap-10">
