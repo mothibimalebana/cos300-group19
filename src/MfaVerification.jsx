@@ -1,42 +1,52 @@
 "use client"
 
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import "./App.css"
+import { useState, useEffect } from "react"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 
-function App() {
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    confirmPassword: "",
-  })
+function MfaVerification() {
+  const [verificationCode, setVerificationCode] = useState("")
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [countdown, setCountdown] = useState(60)
+  const [generatedCode, setGeneratedCode] = useState("")
   const navigate = useNavigate()
+  const location = useLocation()
+  const username = location.state?.username || "User"
+
+  // Redirect if accessed directly without coming from login
+  useEffect(() => {
+    if (!location.state?.username) {
+      navigate("/login", { replace: true })
+    }
+  }, [location.state, navigate])
+
+  // Generate a random 6-digit code when component mounts
+  useEffect(() => {
+    const code = Math.floor(100000 + Math.random() * 900000).toString()
+    setGeneratedCode(code)
+    // In a real app, this would be sent to the user's email or phone
+    console.log("Generated MFA code:", code)
+  }, [])
+
+  // Countdown timer for code expiration
+  useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [countdown])
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({
-      ...formData,
-      [name]: value,
-    })
+    setVerificationCode(e.target.value)
   }
 
   const validate = () => {
     const newErrors = {}
 
-    if (!formData.username.trim()) {
-      newErrors.username = "Username is required"
-    }
-
-    if (!formData.password) {
-      newErrors.password = "Password is required"
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters"
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match"
+    if (!verificationCode.trim()) {
+      newErrors.code = "Verification code is required"
+    } else if (verificationCode.length !== 6) {
+      newErrors.code = "Verification code must be 6 digits"
     }
 
     return newErrors
@@ -48,20 +58,31 @@ function App() {
 
     if (Object.keys(newErrors).length === 0) {
       setIsSubmitting(true)
-      // Simulate API call
+
+      // Simulate API call for verification
       setTimeout(() => {
-        alert("Registration successful! Please login.")
-        setFormData({
-          username: "",
-          password: "",
-          confirmPassword: "",
-        })
+        if (verificationCode === generatedCode) {
+          alert("MFA verification successful! You are now logged in.")
+          navigate("/dashboard")
+        } else {
+          setErrors({ code: "Invalid verification code" })
+        }
         setIsSubmitting(false)
-        navigate("/login")
-      }, 1500)
+      }, 1000)
     } else {
       setErrors(newErrors)
     }
+  }
+
+  const resendCode = () => {
+    // Generate a new code
+    const newCode = Math.floor(100000 + Math.random() * 900000).toString()
+    setGeneratedCode(newCode)
+    setCountdown(60)
+
+    // In a real app, this would be sent to the user's email or phone
+    console.log("New MFA code:", newCode)
+    alert("A new verification code has been sent to your registered email/phone.")
   }
 
   return (
@@ -69,7 +90,7 @@ function App() {
       className="min-h-screen bg-cover flex flex-col"
       style={{
         backgroundImage: `url('/images/background.png')`,
-        backgroundPosition: "center bottom", // Position to show bottom part
+        backgroundPosition: "center bottom",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}
@@ -83,10 +104,10 @@ function App() {
           <span className="ml-2 text-2xl font-bold text-white">Group 19</span>
         </div>
         <div className="flex gap-6">
-          <Link to="/login" className="text-white hover:underline">
+          <Link to="/login" className="text-white hover:underline font-semibold">
             Login
           </Link>
-          <Link to="/register" className="text-white hover:underline font-semibold">
+          <Link to="/register" className="text-white hover:underline">
             Register
           </Link>
         </div>
@@ -96,7 +117,14 @@ function App() {
       <main className="flex-grow flex items-center justify-center">
         <form onSubmit={handleSubmit} className="w-full max-w-md px-6">
           <div className="space-y-6">
-            {/* Username Input */}
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-white">Two-Factor Authentication</h2>
+              <p className="text-white mt-2">
+                Hi {username}, please enter the 6-digit verification code sent to your registered email/phone.
+              </p>
+            </div>
+
+            {/* Verification Code Input */}
             <div className="relative">
               <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-full overflow-hidden flex items-center">
                 <div className="pl-4 pr-2">
@@ -105,70 +133,28 @@ function App() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth="2"
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                     ></path>
                   </svg>
                 </div>
                 <input
                   type="text"
-                  name="username"
-                  placeholder="Username"
-                  value={formData.username}
+                  name="verificationCode"
+                  placeholder="Enter 6-digit code"
+                  value={verificationCode}
                   onChange={handleChange}
+                  maxLength={6}
                   className="w-full py-4 px-2 bg-transparent text-white placeholder-white placeholder-opacity-70 focus:outline-none"
                 />
               </div>
-              {errors.username && <p className="text-red-300 text-sm mt-1">{errors.username}</p>}
+              {errors.code && <p className="text-red-300 text-sm mt-1">{errors.code}</p>}
             </div>
 
-            {/* Password Input */}
-            <div className="relative">
-              <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-full overflow-hidden flex items-center">
-                <div className="pl-4 pr-2">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    ></path>
-                  </svg>
-                </div>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="w-full py-4 px-2 bg-transparent text-white placeholder-white placeholder-opacity-70 focus:outline-none"
-                />
-              </div>
-              {errors.password && <p className="text-red-300 text-sm mt-1">{errors.password}</p>}
-            </div>
-
-            {/* Confirm Password Input */}
-            <div className="relative">
-              <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-full overflow-hidden flex items-center">
-                <div className="pl-4 pr-2">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    ></path>
-                  </svg>
-                </div>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  className="w-full py-4 px-2 bg-transparent text-white placeholder-white placeholder-opacity-70 focus:outline-none"
-                />
-              </div>
-              {errors.confirmPassword && <p className="text-red-300 text-sm mt-1">{errors.confirmPassword}</p>}
+            {/* Code expiration countdown */}
+            <div className="text-center">
+              <p className="text-white text-sm">
+                Code expires in: <span className="font-bold">{countdown} seconds</span>
+              </p>
             </div>
 
             {/* Submit Button */}
@@ -192,9 +178,23 @@ function App() {
                   ></path>
                 </svg>
               ) : (
-                "GET STARTED"
+                "VERIFY"
               )}
             </button>
+
+            {/* Resend Code Button */}
+            <div className="text-center">
+              <button type="button" onClick={resendCode} className="text-white text-sm hover:underline">
+                Didn't receive a code? Resend
+              </button>
+            </div>
+
+            {/* Back to Login */}
+            <div className="text-center mt-4">
+              <Link to="/login" className="text-white text-sm hover:underline">
+                ← Back to Login
+              </Link>
+            </div>
           </div>
         </form>
       </main>
@@ -222,4 +222,4 @@ function App() {
   )
 }
 
-export default App
+export default MfaVerification
