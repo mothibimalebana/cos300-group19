@@ -2,6 +2,7 @@
     height: 100vh;
     font-family: 'Instrument Sans';
     color: #000000;
+    max-width: 100%;
 }
 .title {
     font-family: "Poppins Bold";
@@ -10,7 +11,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     line-height: normal;
     width: 85%;
 }
@@ -20,6 +21,7 @@
     background-size: cover;
     background-position: center center;
     background-image: url('https://ui167uk0dv.ufs.sh/f/cPmxYSKavd0txHXr62jqWTt9cl3HLV6rnpmBkweR0iEXgGh2');
+    max-width: 100%;
 }
 .branding {
     width: 60%;
