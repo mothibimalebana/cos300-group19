@@ -1,9 +1,73 @@
 .project-container{
     display: grid;
     grid-template-columns: 30% 30% 30%;
-    grid-template-rows: 20% 80%;
+    grid-template-rows: 10% 90%;
     height: 100%;
     background: #EBDFD7;
     padding: 2rem 4rem;
     overflow: hidden;
+}
+.svg-add {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: var(--radius-md, 8px);
+    background: var(--black-grey-3, #808080);
+}
+.svg-remove {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: var(--radius-md, 8px);
+    background: #FEE4E2;
+}
+.addTask, .removeTask{
+    border-radius: var(--radius-xl, 12px);
+    border: 1px solid var(--Gray-100, #ECEFF2);
+    background: rgba(255, 255, 255, 0.34);
+    
+    /* Shadows/shadow-xs */
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+
+    display: flex;
+    padding: 20px;
+    align-items: center;
+
+    gap: 12px;
+    flex: 1 0 0;
+    width: 90%;
+    justify-self: start;
+}
+.subText{
+    overflow: hidden;
+    color: var(--Gray-600, #516778);
+    text-overflow: ellipsis;
+    
+    /* Text sm/Regular */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+}
+.trackProjects, .projects {
+    justify-self: start;
+    align-self: center;
+    border-radius: 12px;
+    border: 1px solid var(--Gray-100, #ECEFF2);
+    background: rgba(255, 255, 255, 0.34);
+    
+    /* Shadows/shadow-xs */
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+
+    width: 90%;
+    height: 88%;
 }
