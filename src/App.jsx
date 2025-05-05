@@ -6,18 +6,26 @@ import Dashboard from "./Dashboard";
 import PasswordReset from "./PasswordReset";
 import LandingPage from "./LandingPage";
 import UpdatePassword from "./UpdatePassword";
+import Projects from "./Project";
+import NavLayout from "./layout/NavLayout";
 
 const App = () =>{
   return(
     <>
-        <Routes>
-            <Route element={<AuthRoute />}>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+      <Routes>
+            {/* Routes with the navbar */}
+            <Route element={<NavLayout/>}>
+              <Route element={<AuthRoute />}>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Route>
+              <Route path="/landing-page" element={<LandingPage />} />
+              <Route path="/projects" element={<Projects />} />
             </Route>
+            
+            {/* Routes without the navbar */}
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/landing-page" element={<LandingPage />} />
             <Route path="/passwordreset" element={<PasswordReset />} />
             <Route path="/update-password" element={<UpdatePassword />} />
       </Routes>

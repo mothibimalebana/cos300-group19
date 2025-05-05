@@ -14,8 +14,8 @@ const Nav = () => {
                 </div>
                 <div className="right flex gap-15">
                     <Link to="/dashboard" className="buttons">Dashboard</Link>
-                    <Link to="projects" className="buttons">Projects</Link>
-                    <Link to="reporint-analytics" className="buttons">Reportings & Alerts</Link>
+                    <Link to="/projects" className="buttons">Projects</Link>
+                    <Link to="/reporint-analytics" className="buttons">Reportings & Alerts</Link>
                 </div>
             </div>
         </>
