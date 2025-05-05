@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'Instrument Sans';
+    font-family: 'Instrument Sans Bold';
     src: url('InstrumentSans-Bold.woff2') format('woff2'),
         url('InstrumentSans-Bold.woff') format('woff');
     font-weight: bold;
@@ -17,7 +17,7 @@
 }
 
 @font-face {
-    font-family: 'Instrument Sans';
+    font-family: 'Instrument Sans SemiBold';
     src: url('InstrumentSans-SemiBold.woff2') format('woff2'),
         url('InstrumentSans-SemiBold.woff') format('woff');
     font-weight: 600;

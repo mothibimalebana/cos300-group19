@@ -14,6 +14,8 @@ function Login() {
     const location = useLocation();
 
     let pathname = location.pathname;
+    const currentPath = pathname.split('/')[1];
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,7 +38,6 @@ function Login() {
         setLoading(false);
       };
 
-    const currentPath = pathname.split('/')[1];
     return(
         <div className="hidden md:flex flex-col containerL justify-between">
             {/*Desktop*/}
@@ -81,6 +82,7 @@ function Login() {
               </alert>
             )}
                 <button disabled={loading} className='submit'>Get started</button>
+                <button disabled={loading} className='submit'><Link to={"/passwordreset"}>Forgot Password</Link></button>
             </form>
             <div className="footer flex justify-between">
                 <div className="left flex gap-10">

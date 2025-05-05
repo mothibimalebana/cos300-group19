@@ -1,9 +1,53 @@
 .landing-container{
     height: 100vh;
     font-family: 'Instrument Sans';
-    margin: 0;
-    background-image: url('https://ui167uk0dv.ufs.sh/f/cPmxYSKavd0txHXr62jqWTt9cl3HLV6rnpmBkweR0iEXgGh2');
-    background-size: cover;
-    background-position: bottom bottom;
     color: #000000;
+}
+.title {
+    font-family: "Poppins Bold";
+    background: linear-gradient(180deg, #FFF 50%, rgba(255, 255, 255, 0.40) 226.45%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 85%;
+}
+.content {
+    padding: 1rem 2rem;
+    margin: 0;
+    background-size: cover;
+    background-position: center center;
+    background-image: url('https://ui167uk0dv.ufs.sh/f/cPmxYSKavd0txHXr62jqWTt9cl3HLV6rnpmBkweR0iEXgGh2');
+}
+.branding {
+    width: 60%;
+    height: fit-content;
+    align-self: end;
+    justify-self: end;
+}
+h5.brand {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;   
+}
+p.text {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.20);
+}
+.goto {
+    background: #EBDFD7;
+    width: 182px;
+    height: 71px;
+    padding: 14px 16px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+button.landing{
+    color: #FFF;
+    width: 162px;
 }

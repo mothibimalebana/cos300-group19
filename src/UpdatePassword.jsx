@@ -1,10 +1,14 @@
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "./context/AuthProvider";
 
 
 
 const UpdatePassword = () => {
+    const location = useLocation();
+    let pathname = location.pathname;
+    const currentPath = pathname.split('/')[1];
+
     const { updatePassword } = useAuth();
     const passwordRef = useRef(null);
     const confirmPasswordRef = useRef(null);
@@ -36,7 +40,7 @@ const UpdatePassword = () => {
       };
 
         return(
-            <div className="hidden md:flex flex-col container justify-between">
+            <div className="hidden md:flex flex-col containerL justify-between">
             {/*Desktop*/}
             <div className="header flex justify-between">
                 <div className="brand flex gap-3 items-center">
@@ -45,6 +49,10 @@ const UpdatePassword = () => {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M21.8696 22.9407L40.909 33.9547V22.9407L31.3969 17.4337V6.41962L21.8696 0.912598V22.9407Z" fill="white"/>
                     </svg>
                     <h2>Group 19</h2>
+                </div>
+                <div className="left flex gap-5">
+                    <Link to="/login" className={`login ${currentPath ? 'shade' : 'none'}`}><p>Login</p></Link>
+                    <Link to="/register"><p>Register</p></Link>
                 </div>
             </div>
             <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
