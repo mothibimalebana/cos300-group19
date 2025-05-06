@@ -15,7 +15,7 @@
     font-style: normal;
     font-weight: 300;
     line-height: normal;
-    width: 85%;
+    width: 100%;
 }
 .content {
     grid-column-start: 1;
