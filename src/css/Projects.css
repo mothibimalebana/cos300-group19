@@ -75,8 +75,7 @@
     height: 88%;
 }
 .projects{
-    grid-template-columns: 50% 15% 10% 20% 5%;
-    grid-template-rows: 10% 5% 85%;
+    padding: 0.5rem 0.rem;
 }
 .projects-heading{
     color: #101828;

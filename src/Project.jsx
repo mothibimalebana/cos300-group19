@@ -337,7 +337,7 @@ const saveProject = (e) => {
                     <p>track projects</p>
                 </div>
 
-                <div className="projects grid col-start-2 col-end-4">
+                <div className="projects col-start-2 col-end-4">
                     <div className="heading col-start-1 col-end-6">
                         <h3 className="projects-heading">Projects</h3>
                         <p>Check your latest projects</p>
