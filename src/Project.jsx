@@ -34,8 +34,18 @@ const Projects = () => {
                     <p>track projects</p>
                 </div>
 
-                <div className="projects col-start-2 col-end-4">
-                    <p>projects</p>
+                <div className="projects grid col-start-2 col-end-4">
+                    <div className="heading col-start-1 col-end-6">
+                        <h3 className="projects-heading">Projects</h3>
+                        <p>Check your latest projects</p>
+                    </div>
+                    <div className="task row-start-2">Task</div>
+                    <div className="priority row-start-2">Priority</div>
+                    <div className="date row-start-2">Date Due</div>
+                    <div className="employee row-start-2">Employee</div>
+                    <div className="options row-start-2"></div>
+                    <div className="tasks row-start-3 col-start-1 col-end-6">
+                    </div>
                 </div>
             </div>
         </>

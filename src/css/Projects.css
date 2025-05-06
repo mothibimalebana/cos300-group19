@@ -1,3 +1,6 @@
+.projects{
+    padding-top: 1rem;
+}
 .project-container{
     display: grid;
     grid-template-columns: 30% 30% 30%;
@@ -43,7 +46,7 @@
 
     gap: 12px;
     flex: 1 0 0;
-    width: 90%;
+    width: 93%;
     justify-self: start;
 }
 .subText{
@@ -68,6 +71,50 @@
     /* Shadows/shadow-xs */
     box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 
-    width: 90%;
+    width: 93%;
     height: 88%;
+}
+.projects{
+    grid-template-columns: 50% 15% 10% 20% 5%;
+    grid-template-rows: 10% 5% 85%;
+}
+.projects-heading{
+    color: #101828;
+
+    /* Text lg/Semibold */
+    font-family: 'Poppins';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px; /* 155.556% */
+}
+.task, .priority, .date, .options, .employee{
+    border-bottom: 1px solid #EBDFD7;
+    background: #EBDFD7;
+    color: var(--Gray-600, #516778);
+    height: 100%;
+    
+
+    /* Text xs/Medium */
+    font-family: Inter;
+    font-size: 16px;
+    align-self: center;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px; /* 150% */
+}
+.heading {
+    padding: 0.1rem 0.1rem;
+}
+.heading > p {
+    overflow: hidden;
+    color: var(--Gray-600, #516778);
+    text-overflow: ellipsis;
+    
+    /* Text sm/Regular */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
 }
