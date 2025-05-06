@@ -16,11 +16,11 @@ const App = () =>{
             {/* Routes with the navbar */}
             <Route element={<NavLayout/>}>
               <Route element={<AuthRoute />}>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<LandingPage />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/landing-page" element={<LandingPage />} />
+                <Route path="/projects" element={<Projects />} />
               </Route>
-              <Route path="/landing-page" element={<LandingPage />} />
-              <Route path="/projects" element={<Projects />} />
             </Route>
             
             {/* Routes without the navbar */}
